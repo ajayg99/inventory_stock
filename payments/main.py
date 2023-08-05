@@ -8,7 +8,7 @@ import requests, time, redis
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://frontend-ord-service"],  #allow frontend to request the API 
+    allow_origins=["http://frontend-ord-service.invstockprod.svc.cluster.local"],  #allow frontend to request the API 
     allow_methods=['*'],
     allow_headers=['*']
 )
@@ -29,7 +29,7 @@ def get(pk: str):
 @app.post('/orders')
 async def create(request: Request, background_task: BackgroundTasks):
     body = await request.json()
-    product_url = 'http://inv-app-service/products/%s' % body['id']
+    product_url = 'http://inv-app-service.invstockprod.svc.cluster.local/products/%s' % body['id']
     req = requests.get(product_url)
     product = req.json()
     order = Order(

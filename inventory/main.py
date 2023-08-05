@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://frondend-inv-service", "http://frontend-ord-service"],  #allow frontend to request the API
+    allow_origins=["http://frontend-inv-service.invstockprod.svc.cluster.local", "http://frontend-ord-service.invstockprod.svc.cluster.local"],  #allow frontend to request the API
     allow_methods=['*'],
     allow_headers=['*']
 )

@@ -11,7 +11,7 @@ export const ProductsCreate = () => {
     const submit = async e => {
         e.preventDefault();
 
-        await fetch('http://inv-app-service/products', {
+        await fetch('http://inv-app-service.invstockprod.svc.cluster.local/products', {
             method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
                 name, price, quantity
             })

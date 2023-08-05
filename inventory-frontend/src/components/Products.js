@@ -7,7 +7,7 @@ export const Products = () => {
     console.log("gg",products[0])
     useEffect(() => {
         (async () => {
-            const response = await fetch('http://inv-app-service/products');
+            const response = await fetch('http://inv-app-service.invstockprod.svc.cluster.local/products');
             const content = await response.json();
             setProducts(content);
         })();
@@ -15,7 +15,7 @@ export const Products = () => {
 
     const del = async id => {
         if (window.confirm('Are you sure to delete this record?')) {
-            await fetch(`http://inv-app-service/products/${id}`, {
+            await fetch(`http://inv-app-service.invstockprod.svc.cluster.local/products/${id}`, {
                 method: 'DELETE'
             });
 
