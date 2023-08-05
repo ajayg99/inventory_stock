@@ -1,0 +1,58 @@
+steps:
+  ######### Inventory ########
+  # Docker Build (inv-app)
+  - name: 'gcr.io/cloud-builders/docker'      
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/inv-app', './inventory']
+
+  # Docker Push (inv-app)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/inv-app']
+
+  # Docker Build (inv-consumer)
+  - name: 'gcr.io/cloud-builders/docker'      
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/inv-cons', './inventory_consumer']
+
+  # Docker Push (inv-consumer)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/inv-cons']
+######### Payments ########
+  # Docker Build (pay-app)
+  - name: 'gcr.io/cloud-builders/docker'      
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/pay-app', './payments']
+
+  # Docker Push (pay-app)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/pay-app']
+
+  # Docker Build (pay-consumer)
+  - name: 'gcr.io/cloud-builders/docker'      
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/pay-cons', './payments_consumer']
+
+  # Docker Push (pay-consumer)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/pay-cons']
+  ######### Inventory Frontend ########
+    # Docker Build (frontend - inv )
+  - name: 'gcr.io/cloud-builders/docker'      
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/frontend-inv', './inventory-frontend']
+
+  # Docker Push (frontend - inv)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/frontend-inv']
+  ######### Order Frontend ########
+    # Docker Build (frontend - inv )
+  - name: 'gcr.io/cloud-builders/docker'      
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/frontend-ord', './orders-frontend']
+
+  # Docker Push (frontend - inv)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/frontend-ord']
+
+  # deploy container image to GKE
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+    - run
+    - --filename=gke.yaml
+    - --location=us-central1-c
+    - --cluster=invstockapp
+    - --namespace=invstockprod

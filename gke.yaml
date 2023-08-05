@@ -1,0 +1,227 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-stream
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-stream
+  template:
+    metadata:
+      labels:
+        app: redis-stream
+    spec:
+      containers:
+        - name: redis-stream
+          image: redis
+          ports:
+            - containerPort: 6379
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-stream-service
+  namespace: invstockprod
+  labels:
+    name: redis-stream-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 6379
+  selector:
+    app: redis-stream
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inv-app
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inv-app
+  template:
+    metadata:
+      labels:
+        app: inv-app
+    spec:
+      containers:
+        - name: inv-app
+          image: gcr.io/microservices-394918/inv-app:latest
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inv-app-service
+  namespace: invstockprod
+  labels:
+    name: inv-app-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8000
+  selector:
+    app: inv-app
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pay-app
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pay-app
+  template:
+    metadata:
+      labels:
+        app: pay-app
+    spec:
+      containers:
+        - name: pay-app
+          image: gcr.io/microservices-394918/pay-app:latest
+          ports:
+            - containerPort: 8001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pay-app-service
+  namespace: invstockprod
+  labels:
+    name: pay-app-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8001
+  selector:
+    app: pay-app
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-inv
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-inv
+  template:
+    metadata:
+      labels:
+        app: frontend-inv
+    spec:
+      containers:
+        - name: frontend-inv
+          image: gcr.io/microservices-394918/frontend-inv:latest
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-inv-service
+  namespace: invstockprod
+  labels:
+    name: frontend-inv-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3000
+  selector:
+    app: frontend-inv
+  type: "LoadBalancer"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-ord
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-ord
+  template:
+    metadata:
+      labels:
+        app: frontend-ord
+    spec:
+      containers:
+        - name: frontend-ord
+          image: gcr.io/microservices-394918/frontend-ord:latest
+          ports:
+            - containerPort: 3001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-ord-service
+  namespace: invstockprod
+  labels:
+    name: frontend-ord-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3001
+  selector:
+    app: frontend-ord
+  type: "LoadBalancer"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inv-cons
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inv-cons
+  template:
+    metadata:
+      labels:
+        app: inv-cons
+    spec:
+      containers:
+        - name: inv-cons
+          image: gcr.io/microservices-394918/inv-cons:latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pay-cons
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pay-cons
+  template:
+    metadata:
+      labels:
+        app: pay-cons
+    spec:
+      containers:
+        - name: pay-cons
+          image: gcr.io/microservices-394918/pay-cons:latest
