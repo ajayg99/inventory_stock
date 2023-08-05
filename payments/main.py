@@ -8,7 +8,7 @@ import requests, time, redis
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://frontend-ord-service.invstockprod.svc.cluster.local"],  #allow frontend to request the API 
+    allow_origins=["*"],  #allow frontend to request the API 
     allow_methods=['*'],
     allow_headers=['*']
 )
