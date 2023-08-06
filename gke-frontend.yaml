@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-inv
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-inv
+  template:
+    metadata:
+      labels:
+        app: frontend-inv
+    spec:
+      containers:
+        - name: frontend-inv
+          image: gcr.io/microservices-394918/frontend-inv:latest
+          env:
+            - name: INGRESS
+              value: ""
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-inv-service
+  namespace: invstockprod
+  labels:
+    name: frontend-inv-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3000
+  selector:
+    app: frontend-inv
+  type: "LoadBalancer"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-ord
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-ord
+  template:
+    metadata:
+      labels:
+        app: frontend-ord
+    spec:
+      containers:
+        - name: frontend-ord
+          image: gcr.io/microservices-394918/frontend-ord:latest
+        - name: INGRESS
+          value: ""
+          ports:
+            - containerPort: 3001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-ord-service
+  namespace: invstockprod
+  labels:
+    name: frontend-ord-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3001
+  selector:
+    app: frontend-ord
+  type: "LoadBalancer"

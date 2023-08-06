@@ -4,7 +4,7 @@ from model import Order
 
 
 redis_stream = redis.Redis(
-  host='redis-stream-service',
+  host='redis-stream-service.invstockprod.svc.cluster.local',
   port=80,
   )
 

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: invstock-ingress
+  namespace: invstockprod
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /products/*
+        pathType: Prefix
+        backend:
+          service:
+            name: inv-app-service
+            port:
+              number: 80
+      - path: /orders/*
+        pathType: Prefix
+        backend:
+          service:
+            name: pay-app-service
+            port:
+              number: 80
