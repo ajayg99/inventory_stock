@@ -11,7 +11,9 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-
+@app.get("/")
+def health_check():
+     return "ok"
 @app.get('/products/{pk}')
 def get_product(pk: str):
     try:

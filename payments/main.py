@@ -13,6 +13,9 @@ app.add_middleware(
     allow_headers=['*']
 )
 
+@app.get("/")
+def health_check():
+     return "ok"
 
 redis_stream = redis.Redis(
   host='redis-stream-service.invstockprod.svc.cluster.local',

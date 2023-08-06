@@ -67,11 +67,11 @@ metadata:
 spec:
   ports:
     - protocol: "TCP"
-      port: 80
+      port: 31112
       targetPort: 8000
   selector:
     app: inv-app
-
+  type: NodePort
 
 ---
 apiVersion: apps/v1
@@ -105,7 +105,7 @@ metadata:
 spec:
   ports:
     - protocol: "TCP"
-      port: 80
+      port: 31111
       targetPort: 8001
   selector:
     app: pay-app
