@@ -11,7 +11,7 @@ export const ProductsCreate = () => {
     const submit = async e => {
         e.preventDefault();
 
-        await fetch(`http://${process.env.INGRESS}/products`, {
+        await fetch(`http://${process.env.REACT_APP_INGRESS}/products`, {
             method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
                 name, price, quantity
             })

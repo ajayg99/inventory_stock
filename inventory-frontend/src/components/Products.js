@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 
 export const Products = () => {
     const [products, setProducts] = useState([]);
-    console.log("gg",products[0])
+    console.log("gg",process.env.INGRESS)
     useEffect(() => {
         (async () => {
-            const response = await fetch(`http://${process.env.INGRESS}/products`);
+            const response = await fetch(`http://${process.env.REACT_APP_INGRESS}/products`);
             const content = await response.json();
             setProducts(content);
         })();
@@ -15,7 +15,7 @@ export const Products = () => {
 
     const del = async id => {
         if (window.confirm('Are you sure to delete this record?')) {
-            await fetch(`http://${process.env.INGRESS}/products/${id}`, {
+            await fetch(`http://${process.env.REACT_APP_INGRESS}/products/${id}`, {
                 method: 'DELETE'
             });
 

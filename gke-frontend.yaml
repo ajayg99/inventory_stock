@@ -17,8 +17,8 @@ spec:
         - name: frontend-inv
           image: gcr.io/microservices-394918/frontend-inv:latest
           env:
-            - name: INGRESS
-              value: ""
+            - name: REACT_APP_INGRESS
+              value: 34.117.23.186
           ports:
             - containerPort: 3000
 
@@ -59,8 +59,8 @@ spec:
         - name: frontend-ord
           image: gcr.io/microservices-394918/frontend-ord:latest
           env:
-            - name: INGRESS
-              value: ""
+            - name: REACT_APP_INGRESS
+              value: 34.117.23.186
           ports:
             - containerPort: 3001
 
