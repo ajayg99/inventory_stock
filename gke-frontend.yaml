@@ -58,8 +58,9 @@ spec:
       containers:
         - name: frontend-ord
           image: gcr.io/microservices-394918/frontend-ord:latest
-        - name: INGRESS
-          value: ""
+          env:
+            - name: INGRESS
+              value: ""
           ports:
             - containerPort: 3001
 
