@@ -10,7 +10,7 @@ redis_stream = redis.Redis(
 
 key = 'refund_order'
 group = 'payment-group'
-
+redis_stream.xgroup_create(key,group,'$',mkstream=True)
 
 try:
     redis_stream.xgroup_create(key,group,'$',mkstream=True)
