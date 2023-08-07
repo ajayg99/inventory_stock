@@ -10,7 +10,7 @@ export const Orders = () => {
         if (isQuantityEntered) {
             (async () => {
                 try {
-                    const response = await fetch(`http://${process.env.INGRESS}/products/${id}`);
+                    const response = await fetch(`http://${process.env.REACT_APP_INGRESS}/products/${id}`);
                     const content = await response.json();
                     const price = parseFloat(content.price) * 1.2;
                     setMessage(`Your product price is $${price * quantity}`);
@@ -24,7 +24,7 @@ export const Orders = () => {
     const submit = async e => {
         e.preventDefault();
 
-        await fetch(`http://${process.env.INGRESS}/orders`, {
+        await fetch(`http://${process.env.REACT_APP_INGRESS}/orders`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
