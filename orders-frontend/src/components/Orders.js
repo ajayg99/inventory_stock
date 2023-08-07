@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import productImage from "./buy.png"; // Replace with the actual path to your PNG image
 export const Orders = () => {
     const [id, setId] = useState('');
     const [quantity, setQuantity] = useState('');
@@ -47,6 +47,7 @@ export const Orders = () => {
                 <div className="py-5 text-center">
                     <h2>Checkout form</h2>
                     <p className="lead">{message}</p>
+                    <img src={productImage} alt="Product" />
                 </div>
 
                 <form onSubmit={submit}>
@@ -62,7 +63,7 @@ export const Orders = () => {
                         </div>
                     </div>
                     <hr className="my-4" />
-                    <button className="w-100 btn btn-primary btn-lg" type="submit">Buy</button>
+                    <button className="w-100 btn btn-success btn-lg" type="submit">Buy</button>
                 </form>
             </main>
         </div>

@@ -67,7 +67,7 @@ metadata:
 spec:
   ports:
     - protocol: "TCP"
-      port: 31112
+      port: 80
       targetPort: 8000
   selector:
     app: inv-app
@@ -105,7 +105,7 @@ metadata:
 spec:
   ports:
     - protocol: "TCP"
-      port: 31111
+      port: 80
       targetPort: 8001
   selector:
     app: pay-app

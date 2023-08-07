@@ -14,6 +14,7 @@ app.add_middleware(
 @app.get("/")
 def health_check():
      return "ok"
+
 @app.get('/products/{pk}')
 def get_product(pk: str):
     try:

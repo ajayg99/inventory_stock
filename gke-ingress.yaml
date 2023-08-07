@@ -13,11 +13,11 @@ spec:
               service:
                 name: inv-app-service
                 port:
-                  number: 31112
+                  number: 80
           - path: /orders
             pathType: Prefix
             backend:
               service:
                 name: pay-app-service
                 port:
-                  number: 31111
+                  number: 80
