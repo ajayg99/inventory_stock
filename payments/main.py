@@ -18,7 +18,7 @@ def health_check():
      return "ok"
 
 redis_stream = redis.Redis(
-  host='redis-stream-service.invstockprod.svc.cluster.local',
+  host='redis-stream-service',
   port=80,
   )
 
@@ -32,7 +32,7 @@ def get(pk: str):
 @app.post('/orders')
 async def create(request: Request, background_task: BackgroundTasks):
     body = await request.json()
-    product_url = 'http://inv-app-service.invstockprod.svc.cluster.local/products/%s' % body['id']
+    product_url = 'http://inv-app-service/products/%s' % body['id']
     req = requests.get(product_url)
     product = req.json()
     order = Order(
