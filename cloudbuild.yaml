@@ -52,37 +52,12 @@ steps:
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
     - run
+    - --location=us-central1-c
+    - --cluster=invstockapp
+    - --namespace=invstockprod
     - --filename=gke.yaml
-    - --location=us-central1-c
-    - --cluster=invstockapp
-    - --namespace=invstockprod
-
- # nginx ingress controller
-  - name: "gcr.io/cloud-builders/gke-deploy"
-    args:
-    - run
     - --filename=nginx-con.yaml
-    - --location=us-central1-c
-    - --cluster=invstockapp
-    - --namespace=invstockprod
-
-  # ingress
-  - name: "gcr.io/cloud-builders/gke-deploy"
-    args:
-    - run
     - --filename=gke-ingress.yaml
-    - --location=us-central1-c
-    - --cluster=invstockapp
-    - --namespace=invstockprod
-
-
-  # frontend
-  - name: "gcr.io/cloud-builders/gke-deploy"
-    args:
-    - run
     - --filename=gke-frontend.yaml
-    - --location=us-central1-c
-    - --cluster=invstockapp
-    - --namespace=invstockprod
 
 
