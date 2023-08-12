@@ -39,6 +39,83 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: redis-inventory
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-inventory
+  template:
+    metadata:
+      labels:
+        app: redis-inventory
+    spec:
+      containers:
+        - name: redis-inventory
+          image: redis
+          ports:
+            - containerPort: 6379
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-inventory-service
+  namespace: invstockprod
+  labels:
+    name: redis-inventory-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 6379
+  selector:
+    app: redis-inventory
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-payments
+  namespace: invstockprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-payments
+  template:
+    metadata:
+      labels:
+        app: redis-payments
+    spec:
+      containers:
+        - name: redis-payments
+          image: redis
+          ports:
+            - containerPort: 6379
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-payments-service
+  namespace: invstockprod
+  labels:
+    name: redis-payments-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 6379
+  selector:
+    app: redis-payments
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: inv-app
   namespace: invstockprod
 spec:
