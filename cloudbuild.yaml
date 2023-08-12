@@ -56,8 +56,18 @@ steps:
     - --cluster=invstockapp
     - --namespace=invstockprod
     - --filename=gke.yaml
-    - --filename=nginx-con.yaml
-    - --filename=gke-ingress.yaml
-    - --filename=gke-frontend.yaml
 
 
+  - name: 'gcr.io/cloud-builders/kubectl'
+    env:
+    - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=invstockapp'
+    args:
+      - 'apply'
+      - '-f'
+      - 'https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/cloud/deploy.yaml'
+      - '-f'
+      - 'gke-ingress.yaml'
+      - '-f'
+      - 'gke-frontend.yaml'
