@@ -56,3 +56,16 @@ steps:
     - --location=us-central1-c
     - --cluster=invstockapp
     - --namespace=invstockprod
+
+ # nginx ingress controller
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', 'https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/cloud/deploy.yaml']
+
+  # ingress
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', 'gke-ingress.yaml']
+
+  # frontend
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', 'gke-frontend.yaml']
+
