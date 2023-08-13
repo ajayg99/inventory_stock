@@ -10,7 +10,7 @@ redis_stream = redis.Redis(
 
 key = 'order_completed'
 group = 'inventory-group'
-
+redis_stream.xgroup_create(key,group,'$',mkstream=True)
 try:
     redis_stream.xgroup_create(key,group,'$',mkstream=True)
 except:
