@@ -25,13 +25,11 @@ FastAPI Microservices and Ingress: FastAPI microservices, responsible for specif
 
 ## Screenshots
 
-![Image](https://i.imgur.com/mw9bXqQ.png)
-![Image](https://i.imgur.com/a0fi4Vl.png)
-![Image](https://i.imgur.com/hICau9I.png)
-![Image](https://i.imgur.com/d1C4omZ.png)
-![Image](https://i.imgur.com/ffNOFXD.png)
-![Image](https://i.imgur.com/ok0Qzmu.png)
-![Image](https://i.imgur.com/eTpn7nP.png)
+![Image](https://i.imgur.com/B8G9Bd3.png)
+![Image](https://i.imgur.com/gbT6Nse.png)
+![Image](https://i.imgur.com/TsPdM3t.png)
+![Image](https://i.imgur.com/FF5Bo6S.png)
+![Image](https://i.imgur.com/ZxFqY7A.png)
 
 
 ## Product Backlog Items
