@@ -2,7 +2,7 @@ from redis_om import get_redis_connection, HashModel
 
 
 redis_payment = get_redis_connection(
-  host='redis-inventory-service',
+  host='redis-payments-service',
   port=80
 )
 class Order(HashModel):
