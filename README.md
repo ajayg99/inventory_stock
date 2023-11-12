@@ -32,7 +32,7 @@ FastAPI Microservices and Ingress: FastAPI microservices, responsible for specif
 ![Image](https://i.imgur.com/ZxFqY7A.png)
 
 
-## Product Backlog Items
+## Product Backlog Items:
 
 Helm Chart Templating: The project roadmap includes the implementation of Helm charts for managing Kubernetes manifests. Helm simplifies deployment and configuration management by enabling templating and versioning of Kubernetes resources.
 
