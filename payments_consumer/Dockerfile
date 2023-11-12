@@ -1,4 +1,5 @@
 FROM python:slim-bullseye
+RUN apt-get update && apt-get install -y build-essential
 
 WORKDIR /consumer
 
