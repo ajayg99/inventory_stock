@@ -4,4 +4,4 @@ metadata:
   name: ingress-ip-config
   namespace: invstockprod
 data:
-  INGRESS_IP: '34.111.32.50'
+  INGRESS_IP: '34.134.116.118'
